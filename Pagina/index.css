@@ -1,0 +1,39 @@
+
+body{
+    background: red;
+}
+.personaequipo {
+    background: antiquewhite;
+    width: 135px;
+    margin-bottom: 8px;
+    height: 147px;
+    border-radius: 12px;
+    padding: 11px;
+    float: left;
+    margin-right: 10px;
+}
+.cargo {
+    top: 26px;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    color: gray;
+    font-size: 12px;
+}
+
+.nombre {
+    top: 21px;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    color: gray;
+    font-style: italic;
+}
+
+img.imgpersona {
+    width: 85px;
+    height: 85px;
+    left: 24px;
+    position: relative;
+    border-radius: 59px;
+}

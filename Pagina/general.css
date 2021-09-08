@@ -1,0 +1,114 @@
+
+input{
+    background: red;
+}
+
+body{
+    background: blue;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+#equipo_detrabajo{
+    top: 65px;
+position: relative;
+background: beige;
+height: 200px;
+zoom: 75%;
+padding-left: 124px;
+padding-top: 25px;
+}
+
+
+#menugrande{
+    background: green;
+    height: 200px;
+}
+
+
+#menupequeño{
+    display: none;
+    background: red;
+    height: 50px;
+}
+
+
+
+@media (max-width:419px) {
+    
+
+    #equipo_detrabajo{
+        height: 600px;
+    }
+
+    #menupequeño{
+        display: block;
+    }
+    
+    #menugrande{
+        display: none;
+    }
+
+}
+
+@media (max-width:767px) and (min-width:420px){
+   
+    #equipo_detrabajo{
+        height: 378px;
+    }
+
+    #menupequeño{
+        display: none;
+    }
+    
+    #menugrande{
+        display: block;
+    }
+
+
+}
+
+@media (max-width:991px) and (min-width:768px){
+    
+    #menupequeño{
+        display: none;
+    }
+    
+    #menugrande{
+        display: block;
+    }
+}
+
+
+
+@media (max-width:1199px) and (min-width:992px){
+   
+    #menupequeño{
+        display: none;
+    }
+    
+    #menugrande{
+        display: block;
+    }
+
+    
+
+}
+
+
+@media (max-width:5000px) and (min-width:1200px){
+   
+    #menupequeño{
+        display: none;
+    }
+    
+    #menugrande{
+        display: block;
+    }
+
+    .imgpersona{
+        border-radius: 0px;
+    }
+}
