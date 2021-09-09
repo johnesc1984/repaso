@@ -33,7 +33,7 @@ var sumar = function(a,b,c){
 
 
 
-var enviarmonedas = function(nombre,status=true){
+var enviarmonedas = function(nombre,genero="I",edad="18"){
 
     if(status == true){
         console.log(nombre + '+500 monedas')
@@ -44,12 +44,68 @@ var enviarmonedas = function(nombre,status=true){
         console.log(nombre + '+50 monedas')
     }
 
-
 }
 
 
-enviarmonedas('john')
-enviarmonedas('juan',false)
+var generos = []
+//push agrega elementos a un array
+generos.push({id:"a",age:35,estado:true})
+generos.push({id:"b",age:34,estado:false})
+generos.push({id:"c",age:36,estado:true})
+
+//pop elimina ultimo registro
+//generos.pop()
+//generos.pop()
+
+//reverse se usa para invertir el orden de un array
+//generos.reverse()
+
+
+console.log(generos)
+
+var datos = []
+datos.push("a")
+datos.push("b")
+datos.push("c")
+
+
+
+
+//separa cada elemento del array con un caracter |
+//datos.join('|')
+
+//el .length sirve para ver cuantos registros tengo
+//var x = datos.length
+
+//sirve para buscar elementos dentro de un array y me devueleve true si existe
+//datos.includes("x")
+
+// index of me permite buscar en un array y me devuelve la posicion donde lo encuentra
+//datos.indexOf('a')
+
+// Array.isArray me permite validar  si un elemento de de tipo array
+//var x = Array.isArray(datos)
+
+//fill me permite reeemplazar toda la informacion de cada elemento del array
+//datos.fill("default.jpg")
+
+//concat se utiliza para unir 2 tipos de array
+//var resultado = datos.concat(datos1)
+
+//splice se utiliza para eliminar elementos a partir de una posicion
+//datos.splice(1,2)
+
+// var x = 2
+// console.log(x.toString())
+
+// console.log(datos)
+// console.log(datos.indexOf('2'))
+
+
+
+
+enviarmonedas('john',"M")
+enviarmonedas('juan',"F")
 
 
 
