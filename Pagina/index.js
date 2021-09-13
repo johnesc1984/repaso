@@ -102,10 +102,66 @@ datos.push("c")
 // console.log(datos.indexOf('2'))
 
 
-
-
 enviarmonedas('john',"M")
 enviarmonedas('juan',"F")
+
+
+var a = 1
+var b = 2
+var c = 2
+var d = 3
+
+//if ternario
+//a == b ? console.log('entro'):console.log('no entro')
+
+
+// verdadero  / false
+// if(a == b && c == d )
+// {
+// //aqui
+// console.log('entro por el IF')
+
+// }
+// else
+// {
+//     console.log('entro por el False')
+// }
+
+var edad = 5;
+var vacuna = "pfizer"
+
+
+
+
+// conficional similar al IF 
+
+// switch (true) {
+ 
+//     case (edad >= 0 && edad <= 10):
+//        vacuna = "vacuna 2"
+//         break;
+    
+//     case  (edad >= 0 && edad <= 4):
+//             vacuna = "vacuna1"
+    
+//             break;
+//     case (edad >= 11 && edad <= 20):
+//         vacuna = "vacuna 3"
+//         break;
+
+//     case 7:
+//             vacuna = "vacuna 4"
+//             break;
+
+//     default:
+//         vacuna = "pfizer"
+//         break;
+// }
+
+
+
+
+
 
 
 
