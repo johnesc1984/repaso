@@ -172,7 +172,7 @@ var datos = [
 
 for (const iterator of datos) {
     iterator.total = iterator.valor * iterator.cantidad
-    console.log(iterator)
+    //console.log(iterator)
 }
 
 // datos.forEach(element => {
@@ -199,6 +199,24 @@ for (const iterator of datos) {
  
    
 // }
+
+var a = 1;
+var b = 1;
+var c = 0;
+
+//true | false
+while (a == b) {
+
+    console.log(datos[c])
+   
+   
+   
+
+    if(c == datos.length -1){
+        a = 1000;
+    }
+    c = c + 1
+}
 
 
 
