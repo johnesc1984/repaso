@@ -158,7 +158,47 @@ var vacuna = "pfizer"
 //         break;
 // }
 
+var datos = [
+    {valor:100,cantidad:1,total:0},
+    {valor:200,cantidad:2,total:0},
+    {valor:300,cantidad:3,total:0},
+    {valor:400,cantidad:4,total:0},
+    {valor:500,cantidad:5,total:0}
 
+];
+
+
+
+
+for (const iterator of datos) {
+    iterator.total = iterator.valor * iterator.cantidad
+    console.log(iterator)
+}
+
+// datos.forEach(element => {
+//     element.total = element.cantidad * element.valor
+//     console.log(element)
+// });
+
+// for (const key in datos) {
+//     datos[key].total = datos[key].cantidad * datos[key].valor
+//     console.log(datos[key])
+// }
+
+// var procesados = 0;
+
+// for (var i = 0; i < datos.length ; i++) {
+
+// datos[i].total = datos[i].cantidad * datos[i].valor
+
+
+
+// if(i == datos.length -1){
+//     console.log('Archivos Procesados ' + procesados)
+// }
+ 
+   
+// }
 
 
 
