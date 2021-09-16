@@ -1,287 +1,81 @@
-var valor = ""
-var minumero = 232
-var booestado = true
+//variables
 
-var persona = {
-    nombre:"john",
-    apellido:"Castiblanco",
-    edad:35,
-    status:true,
-    estudios:[{
-       universidad:""
-    }]
+var misproductos = [
+{id:1,cantidad: '100', nombre: 'papitas', valor: 1000},
+{id:2,cantidad: '50', nombre: 'jugo', valor: 1000},
+{id:3,cantidad: '50', nombre: 'chicles', valor: 1000},
+]
+var carrito = [];
+
+
+//creamos los productos
+var GuardarProducto = function () {
+    var nombre = document.getElementById('nombre').value
+    var cantidad = document.getElementById('cantidad').value
+    misproductos.push({cantidad:cantidad,nombre:nombre,valor:1000})
+    console.log(misproductos)
 }
+//mustra las unidades existentes en el carrito
+var analizarcarrito = function(){
 
-var misitems = ["john","juan","Pedro"]
-
-
-var Pedido = {
-    cliente:"john castiblanco",
-    items:[
-        {codigo:"0001",nombre:"papitas",cantidad:2},
-        {codigo:"0002",nombre:"gaseosa",cantidad:1}
-    ]
-}
-
-
-var sumar = function(a,b,c){
-    console.log(a)
-    console.log(b)
-    return (a+b) 
-}
-
-
-
-
-var enviarmonedas = function(nombre,genero="I",edad="18"){
-
-    if(status == true){
-        console.log(nombre + '+500 monedas')
+    console.log(localStorage.getItem('carrito'))
+    if(localStorage.getItem('carrito') != null){
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        console.log(carrito)
+        document.getElementById('micarrito').innerHTML = carrito.length
     }
-
-
-    if(status == false){
-        console.log(nombre + '+50 monedas')
-    }
-
-}
-
-
-var generos = []
-//push agrega elementos a un array
-generos.push({id:"a",age:35,estado:true})
-generos.push({id:"b",age:34,estado:false})
-generos.push({id:"c",age:36,estado:true})
-
-//pop elimina ultimo registro
-//generos.pop()
-//generos.pop()
-
-//reverse se usa para invertir el orden de un array
-//generos.reverse()
-
-
-console.log(generos)
-
-var datos = []
-datos.push("a")
-datos.push("b")
-datos.push("c")
-
-
-
-
-//separa cada elemento del array con un caracter |
-//datos.join('|')
-
-//el .length sirve para ver cuantos registros tengo
-//var x = datos.length
-
-//sirve para buscar elementos dentro de un array y me devueleve true si existe
-//datos.includes("x")
-
-// index of me permite buscar en un array y me devuelve la posicion donde lo encuentra
-//datos.indexOf('a')
-
-// Array.isArray me permite validar  si un elemento de de tipo array
-//var x = Array.isArray(datos)
-
-//fill me permite reeemplazar toda la informacion de cada elemento del array
-//datos.fill("default.jpg")
-
-//concat se utiliza para unir 2 tipos de array
-//var resultado = datos.concat(datos1)
-
-//splice se utiliza para eliminar elementos a partir de una posicion
-//datos.splice(1,2)
-
-// var x = 2
-// console.log(x.toString())
-
-// console.log(datos)
-// console.log(datos.indexOf('2'))
-
-
-enviarmonedas('john',"M")
-enviarmonedas('juan',"F")
-
-
-var a = 1
-var b = 2
-var c = 2
-var d = 3
-
-//if ternario
-//a == b ? console.log('entro'):console.log('no entro')
-
-
-// verdadero  / false
-// if(a == b && c == d )
-// {
-// //aqui
-// console.log('entro por el IF')
-
-// }
-// else
-// {
-//     console.log('entro por el False')
-// }
-
-var edad = 5;
-var vacuna = "pfizer"
-
-
-
-
-// conficional similar al IF 
-
-// switch (true) {
- 
-//     case (edad >= 0 && edad <= 10):
-//        vacuna = "vacuna 2"
-//         break;
     
-//     case  (edad >= 0 && edad <= 4):
-//             vacuna = "vacuna1"
-    
-//             break;
-//     case (edad >= 11 && edad <= 20):
-//         vacuna = "vacuna 3"
-//         break;
-
-//     case 7:
-//             vacuna = "vacuna 4"
-//             break;
-
-//     default:
-//         vacuna = "pfizer"
-//         break;
-// }
-
-var datos = [
-    {valor:100,cantidad:1,total:0},
-    {valor:200,cantidad:2,total:0},
-    {valor:300,cantidad:3,total:0},
-    {valor:400,cantidad:4,total:0},
-    {valor:500,cantidad:5,total:0}
-
-];
-
-
-
-
-for (const iterator of datos) {
-    iterator.total = iterator.valor * iterator.cantidad
-    //console.log(iterator)
 }
-
-// datos.forEach(element => {
-//     element.total = element.cantidad * element.valor
-//     console.log(element)
-// });
-
-// for (const key in datos) {
-//     datos[key].total = datos[key].cantidad * datos[key].valor
-//     console.log(datos[key])
-// }
-
-// var procesados = 0;
-
-// for (var i = 0; i < datos.length ; i++) {
-
-// datos[i].total = datos[i].cantidad * datos[i].valor
-
-
-
-// if(i == datos.length -1){
-//     console.log('Archivos Procesados ' + procesados)
-// }
- 
+//metodo para agregar items
+//recibe un id que es el id del producto
+var agregarcarrito = function (id) {
+        console.log(id)  
+        // carrito.push({id:id}) 
    
-// }
-
-var a = 1;
-var b = 1;
-var c = 0;
-
-//true | false
-while (a == b) {
-
-    console.log(datos[c])
+       if(carrito.length == 0){
+           carrito.push({id:id,cantidad:1})
+           console.log(carrito)
+       }
+       else{
+            
+           var posicion = carrito.findIndex((elemento) => elemento.id == id)
    
+           if(posicion == -1 ){
+               carrito.push({id:id,cantidad:1})
+           }
+           else
+           {
+               carrito[posicion].cantidad = carrito[posicion].cantidad + 1
+           }
    
+           console.log(carrito)
+       }
    
-
-    if(c == datos.length -1){
-        a = 1000;
-    }
-    c = c + 1
+       localStorage.setItem('carrito',JSON.stringify(carrito))
+       analizarcarrito()
+   
+}
+//muestra los productos disponibles para agregar al carrito   
+var mostrarmisproductos = function () {
+       for (const iterator of misproductos) {
+          
+           var contenido = 
+           '<div class="miitem">'+
+           '<img src="https://golositos.co/AnexosProductos/642962788dc4e840f89e100b2b295f8d.jpg" class="logoproducto">'+
+           '<div class="btnagregar" onclick="agregarcarrito('+ iterator.id +')" >Agregar</div>'+
+           '</div>'
+   
+           document.getElementById('zonadeactualizacion').innerHTML += contenido
+   
+       }
+   
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+analizarcarrito()
+mostrarmisproductos()
 
 
 

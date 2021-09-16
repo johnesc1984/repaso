@@ -37,3 +37,34 @@ img.imgpersona {
     position: relative;
     border-radius: 59px;
 }
+
+
+img.logoproducto {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.item {
+    float: left;
+    background: #03a9f4;
+    margin: 7px;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.cantidad {
+    font-size: 8px;
+    text-align: center;
+}
+
+.valor {
+    font-size: 10px;
+    text-align: center;
+}
+
+.total {
+    font-size: 10px;
+    text-align: center;
+    color: red;
+}
