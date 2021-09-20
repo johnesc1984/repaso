@@ -1,0 +1,23 @@
+{
+  "name": "repaso",
+  "version": "1.0.0",
+  "description": "descripcion",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnesc1984/repaso.git"
+  },
+  "author": "johncastiblanco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnesc1984/repaso/issues"
+  },
+  "homepage": "https://github.com/johnesc1984/repaso#readme",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}
