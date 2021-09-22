@@ -61,7 +61,7 @@ var mostrarmisproductos = function () {
           
            var contenido = 
            '<div class="miitem">'+
-           '<img src="https://golositos.co/AnexosProductos/642962788dc4e840f89e100b2b295f8d.jpg" class="logoproducto">'+
+           '<img src="/imagenes/img.jpg" class="logoproducto">'+
            '<div class="btnagregar" onclick="agregarcarrito('+ iterator.id +')" >Agregar</div>'+
            '</div>'
    

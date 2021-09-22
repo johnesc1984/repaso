@@ -1,16 +1,18 @@
 var express = require('express')
-var app = express()
-const port = 3000;
+global.app = express()
+global.config = require(__dirname + '/config.js').config
+global.path = require('path')
+global.appRoot = path.resolve(__dirname)
 
 
-app.get('/',function(request,response){
-    response.send('<h1>hola mundo</h1>')
-})
+require('./routes/rutas.js')
 
-app.get('/home',function(request,response){
-    response.send('<h1>hola estas en el home</h1>')
-})
 
-app.listen(port,function(){
-    console.log('Servidor funcionando por el puerto: ' + port)
+//exponer nuestro aplicativo del lado del frontend
+app.use('/',express.static(__dirname + '/Pagina'))
+app.use('/imagenes',express.static(__dirname + '/imagenes'))
+
+
+app.listen(config.puerto,function(){
+    console.log('Servidor funcionando por el puerto: ' + config.puerto)
 })
