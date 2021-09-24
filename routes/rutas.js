@@ -28,3 +28,17 @@ app.post('/guardar',function(request,response){
 app.post('/crearorden',function(request,response){
     usuarios.crearorden(request,response)
 })
+
+
+
+app.post('/registrodeusuarios',function(request,response){
+   usuarios.registrodeusuarios(request,response)
+})
+
+app.post('/login',function(request,response){
+    usuarios.login(request,response)
+})
+
+app.get('/activarusuario/:email/:codigo',function(request,response){
+    usuarios.activar(request,response)
+})
