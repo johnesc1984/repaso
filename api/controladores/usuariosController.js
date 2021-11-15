@@ -2,15 +2,7 @@ var usuariosModel = require(appRoot + '/api/modelos/usuariosModel.js').usuarios
 
 var usuariosController = {}
 
-
-
-usuariosController.activarusuario = function(request,response){
-    var email = request.body.email
-    console.log(email)
-    response.json({state:'ok'})
-    
-}
-
+//crear
 usuariosController.guardar = function(request,response){
     var persona = {
         nombre:request.body.nombre,
@@ -45,6 +37,107 @@ usuariosController.guardar = function(request,response){
 
 
 }
+//actualizar
+usuariosController.actualizar = function(request,response){
+    var persona = {
+        nombre:request.body.nombre,
+        apellidos:request.body.apellidos,
+        direccion:request.body.direccion,
+        telefono:request.body.telefono,
+        id:request.body.id
+    }
+    console.log('------------------------------------->request')
+    console.log(persona)
+
+
+    if(persona.id == "" || persona.id == undefined || persona.id == null  ){
+        response.json({state:false,mesaje:'el campo id es obligatorio'})
+        return false;
+    }
+
+    if(persona.nombre == "" || persona.nombre == undefined || persona.nombre == null  ){
+        response.json({state:false,mesaje:'el campo nombre es obligatorio'})
+        return false;
+    }
+
+
+    if(persona.apellidos == "" || persona.apellidos == undefined || persona.apellidos == null  ){
+        response.json({state:false,mesaje:'el campo apellidos es obligatorio'})
+        return false;
+    }
+
+    if(persona.direccion == "" || persona.direccion == undefined || persona.direccion == null  ){
+        response.json({state:false,mesaje:'el campo direccion es obligatorio'})
+        return false;
+    }
+
+    usuariosModel.actualizar(persona,function(respuesta){
+        console.log('------------------------------------->response')
+        console.log(respuesta)
+        if(respuesta.state == true){
+            response.json({mensaje:'Usuario Modificado correctamente'})
+        }
+        else{
+            response.json({mensaje:'se presento un error al modificar'})
+        }    
+    })
+
+
+}
+//listar usuarios
+usuariosController.listar = function(request,response){
+
+    usuariosModel.listar(null,function(respuesta){
+        response.json(respuesta)
+    })
+}
+
+//listar usuarios
+usuariosController.listarId = function(request,response){
+
+    var post = {
+        id:request.body.id
+    }
+
+    if(post.id == null || post.id == undefined || post.id == ''){
+        response.json({state:false,mensaje:'el campo id es un campo obligatorio'})
+        return false;
+    }
+
+
+    usuariosModel.listarId(post,function(respuesta){
+        response.json(respuesta)
+    })
+}
+
+
+//eliminar usuarios
+usuariosController.eliminar = function(request,response){
+    var post = {
+        id:request.body.id
+    }
+
+    if(post.id == null || post.id == undefined || post.id == ''){
+        response.json({state:false,mensaje:'el campo id es un campo obligatorio'})
+        return false;
+    }
+
+    usuariosModel.eliminar(post,function(respuesta){
+        if(respuesta.state == true){
+            response.json({state:true,mensaje:'Usuario Eliminado'})
+        }
+        else{
+            response.json({state:false,mensaje:'Error al eliminar'})
+        }
+    })
+
+
+}
+
+
+
+
+
 
 usuariosController.crearorden = function(request,response){
     
@@ -88,148 +181,60 @@ usuariosController.crearorden = function(request,response){
 //    })
 }
 
-var usuarios = [];
 
-usuariosController.registrodeusuarios = function(request,response){
-    var post = {
-        email:request.body.email,
-        password:request.body.password
-    }
 
-    if(post.email == "" || post.email == undefined || post.email == null  ){
-        response.json({state:false,mesaje:'el campo email es obligatorio'})
-        return false;
-    }
-    if(post.password == "" || post.password == undefined || post.password == null  ){
-        response.json({state:false,mesaje:'el campo password es obligatorio'})
-        return false;
-    }
+//como descontar tiempo de un array de datos
+var productos = [];
 
-    var numaleatorio = Math.floor(Math.random() * 9999) + 1000;
-    usuarios.push({email:post.email,estado:0,codigoverificacion:numaleatorio,password:post.password})
+usuariosController.start = function(request,response){
 
-    //envio de email
+     productos = [{
+        nombre:'pantalon',
+        estado:1,
+        enpromocion:1,
+        segundos:50
+    },
+    {
+        nombre:'medias',
+        estado:1,
+        enpromocion:1,
+        segundos:10
+    }]
+
+
+    setInterval(function(){
+        console.log('arrancando')
+        for (let index = 0; index < productos.length; index++) {
+           
+            if(productos[index].segundos != 0){
+                productos[index].segundos = productos[index].segundos - 1
+            }
+            
+            if(productos[index].segundos <= 0){
+                productos[index].enpromocion = 0
+                
+            }
+            console.log(productos)
+            console.log('------------------------------------>')   
+        }
+       
+    },1000)
     
 
-
-    const nodemailer = require('nodemailer');
-
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
-        requireTLS: true,
-        auth: {
-            user: 'pruebasprogramacion123@gmail.com',
-            pass: 'bcxgiyjpmycwival'
-        }
-    });
-    //http://127.0.0.1:3000/activarusuario/johnescastiblanco@gmail.com/8585
-    let mailOptions = {
-        from: 'pruebasprogramacion123@gmail.com',
-        to: post.email,
-        subject: 'verifica tu cuenta codigo: ' + numaleatorio,
-          html: "<b style='color:blue'><a href='http://127.0.0.1:3000/activarusuario/"+ post.email +"/"+ numaleatorio +"'>click aqui para activar</a> </b>", // html body
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            
-            return console.log(error.message);
-            response.json({status:'error'})
-        }
-
-        response.json({state:true,mensaje:'su usuario se ha registrado correctamente, le hemos enviado un codigo de verificacion'})
-
-    });
-    //envio del email
-
+    response.json({state:'ok'})
+    
    
-}
-
-usuariosController.login = function(request,response){
-    var post = {
-        email:request.body.email,
-        password:request.body.password
-    }
-
-    if(post.email == "" || post.email == undefined || post.email == null  ){
-        response.json({state:false,mesaje:'el campo email es obligatorio'})
-        return false;
-    }
-
-    if(post.password == "" || post.password == undefined || post.password == null  ){
-        response.json({state:false,mesaje:'el campo password es obligatorio'})
-        return false;
-    }
-
-        var posicion = usuarios.findIndex((elemento) => { return elemento.email == post.email })   
-        
-        if(posicion == -1){
-            response.json({mensaje:'usuario no existe'})
-            return false
-        }
-
-        if(usuarios[posicion].estado == 0){
-            response.json({mensaje:'usuario inactivo verifique su correo'})
-            return false
-        }
-
-        if(usuarios[posicion].estado == 1 && usuarios[posicion].password == post.password ){
-            response.json({mensaje:'Bienvenido'})
-            return false
-        }
-        else{
-            response.json({mensaje:'password incorrecto'})
-            return false
-        }
-        
-
-        
 
 }
 
-usuariosController.activar = function(request,response){
-    var post = {
-        email:request.params.email,
-        codigo:request.params.codigo
-    }
 
-    if(post.email == "" || post.email == undefined || post.email == null  ){
-        response.json({state:false,mesaje:'el campo email es obligatorio'})
-        return false;
-    }
+//listar usuarios
+usuariosController.join = function(request,response){
 
-    if(post.codigo == "" || post.codigo == undefined || post.codigo == null  ){
-        response.json({state:false,mesaje:'el campo codigo es obligatorio'})
-        return false;
-    }
-
-        var posicion = usuarios.findIndex((elemento) => { return elemento.email == post.email })   
-        
-        if(posicion == -1){
-            response.json({mensaje:'usuario no existe'})
-            return false
-        }
-
-        if(usuarios[posicion].codigoverificacion == post.codigo){
-           
-            usuarios[posicion].estado = 1;
-            response.json({mensaje:'su cuenta ha sido activada'})
-            return false
-        }
-        else{
-            response.json({mensaje:'codigo invalido'})
-            return false
-        }
-
-      
-        
-
-        
-
+    usuariosModel.join(null,function(respuesta){
+        response.json(respuesta)
+    })
 }
-
 
 
 module.exports.usuarios = usuariosController
